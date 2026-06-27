@@ -240,6 +240,47 @@ target\release\filip-dhcp.exe
 
 After building, calculate the SHA256 of the release executable and update this README header.
 
+
+---
+
+## MSI installer
+
+This release also includes:
+
+```text
+Filip.DHCP-0.1.0-x64.msi
+```
+
+The MSI installs:
+
+- `filip-dhcp.exe` into `Program Files\Filip.DHCP`,
+- `README.md`,
+- `LICENSE.txt`,
+- `SAPIENTECH-Local-CodeSigning.cer`,
+- Start Menu shortcut `Filip.DHCP`.
+
+During installation it also imports the local SAPIENTECH code-signing certificate into the local machine certificate stores:
+
+```text
+Trusted Root Certification Authorities
+Trusted Publishers
+```
+
+The certificate import is used only for trusting this local/self-signed SAPIENTECH publisher certificate. If the certificate is already installed, Windows/certutil reports it as already present and keeps the existing trust entry.
+
+The MSI itself is signed with the same certificate:
+
+```text
+CN=SAPIENTECH Local Code Signing
+Thumbprint: D4CAA00550339EDFBDF791D76BD76D3A94A75AE7
+```
+
+MSI SHA256:
+
+```text
+8a4138b4eff1075283fa2fa5bee84784835179546622201df2344b66f7b6c72a
+```
+
 ---
 
 ## Digital signature
