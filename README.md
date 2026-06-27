@@ -3,7 +3,7 @@
 **Version:** 0.1.0  
 **Application:** DHCP server detector / rogue DHCP helper  
 **Executable:** `filip-dhcp.exe`  
-**Executable SHA256:** `818f4ce0c4ed835902d9f7993b5e01d8227b9e562f5948feb286342248eca255`  
+**Executable SHA256:** `436902848f643ef1c496a435e64e7e7dbe206df501dc554d38c2760b6731fdff`  
 **Release date:** 2026-06-24  
 **License:** MIT License  
 **Runtime:** Windows command-line application, no Npcap required in current lightweight mode
@@ -239,6 +239,19 @@ target\release\filip-dhcp.exe
 ```
 
 After building, calculate the SHA256 of the release executable and update this README header.
+
+---
+
+## Digital signature
+
+The executable is signed with a local code-signing certificate:
+
+```text
+CN=SAPIENTECH Local Code Signing
+Thumbprint: D4CAA00550339EDFBDF791D76BD76D3A94A75AE7
+```
+
+This is a local/self-signed certificate intended for internal use. On another Windows computer, install `SAPIENTECH-Local-CodeSigning.cer` into Trusted Root Certification Authorities and Trusted Publishers if Windows does not already trust the publisher.
 
 ---
 
