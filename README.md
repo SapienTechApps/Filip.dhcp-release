@@ -1,9 +1,9 @@
 # Filip.DHCP
 
-**Version:** 0.1.0  
+**Version:** 0.2.0  
 **Application:** DHCP server detector / rogue DHCP helper  
 **Executable:** `filip-dhcp.exe`  
-**Executable SHA256:** `436902848f643ef1c496a435e64e7e7dbe206df501dc554d38c2760b6731fdff`  
+**Executable SHA256:** `6f6b002f41ba21e8e597fca3d6b7ba0815c2e9fefedc4504476372abbc78f7f9`  
 **Release date:** 2026-06-24  
 **License:** MIT License  
 **Runtime:** Windows command-line application, no Npcap required in current lightweight mode
@@ -248,7 +248,7 @@ After building, calculate the SHA256 of the release executable and update this R
 This release also includes:
 
 ```text
-Filip.DHCP-0.1.0-x64.msi
+Filip.DHCP-0.2.0-x64.msi
 ```
 
 The MSI installs:
@@ -275,10 +275,43 @@ CN=SAPIENTECH Local Code Signing
 Thumbprint: D4CAA00550339EDFBDF791D76BD76D3A94A75AE7
 ```
 
-MSI SHA256:
+
+---
+
+## SIEM / logging
+
+Filip.DHCP can write an informational detection summary after each run. This is useful for Windows Event Log collection, Wazuh agents, NetXMS/syslog pipelines, or other SIEM tools.
+
+Windows Application log:
+
+```cmd
+filip-dhcp.exe /adapter:Ethernet /yes /eventlog
+```
+
+Syslog over UDP, default port 514:
+
+```cmd
+filip-dhcp.exe /adapter:Ethernet /yes /syslog:192.168.0.10
+```
+
+Syslog over UDP, custom port:
+
+```cmd
+filip-dhcp.exe /adapter:Ethernet /yes /syslog:192.168.0.10:5514
+```
+
+Combined Windows Event Log and syslog:
+
+```cmd
+filip-dhcp.exe /adapter:Ethernet /yes /eventlog /syslog:192.168.0.10:514
+```
+
+The Windows event is written to the Application log with source `Filip.DHCP`, type `Information`, and event ID `1000`. The MSI creates the `Filip.DHCP` event source during installation. Writing to Windows Event Log may require the app to run elevated or under a service/system context depending on local policy.
+
+The syslog message is sent as UDP local0.info and contains a compact key/value summary, for example:
 
 ```text
-8a4138b4eff1075283fa2fa5bee84784835179546622201df2344b66f7b6c72a
+Filip.DHCP DHCP detection status=OK_ONE_DHCP_SERVER adapter=Ethernet method="DHCPDISCOVER broadcast (UDP socket mode, no Npcap)" offers=1 servers=192.168.0.254
 ```
 
 ---
