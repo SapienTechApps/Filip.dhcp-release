@@ -361,6 +361,12 @@ Show help:
 filip-dhcp.exe /help
 ```
 
+Show application version and build commit:
+
+```cmd
+filip-dhcp.exe /version
+```
+
 Use automatic/current adapter:
 
 ```cmd

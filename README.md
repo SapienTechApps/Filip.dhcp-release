@@ -3,7 +3,7 @@
 **Version:** 0.3.0  
 **Application:** DHCP server detector / rogue DHCP helper  
 **Executable:** `filip-dhcp.exe`  
-**Executable SHA256:** `dcb4213aa3bb41f05554771600ad4acefd4bdb0f03daa38821d5994025967bc3`  
+**Executable SHA256:** `8af61f396331b79ffe6b6c11dbb0cea780162406a47cab90a0b129b49487d3ac`  
 **Release date:** 2026-06-24  
 **License:** MIT License  
 **Runtime:** Windows command-line application, no Npcap required in current lightweight mode
@@ -104,6 +104,12 @@ Show help:
 
 ```cmd
 filip-dhcp.exe /help
+```
+
+Show application version and build commit:
+
+```cmd
+filip-dhcp.exe /version
 ```
 
 Use the current/default adapter interactively:
