@@ -3,7 +3,7 @@
 **Version:** 0.3.0  
 **Application:** DHCP server detector / rogue DHCP helper  
 **Executable:** `filip-dhcp.exe`  
-**Executable SHA256:** `8af61f396331b79ffe6b6c11dbb0cea780162406a47cab90a0b129b49487d3ac`  
+**Executable SHA256:** `1ddf7fb473a5b8594009a6b13bbd721713545c037ac1b567aff6c672845d6b3a`  
 **Release date:** 2026-06-24  
 **License:** MIT License  
 **Runtime:** Windows command-line application, no Npcap required in current lightweight mode
