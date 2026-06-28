@@ -1,9 +1,9 @@
 # Filip.DHCP
 
-**Version:** 0.2.0  
+**Version:** 0.3.0  
 **Application:** DHCP server detector / rogue DHCP helper  
 **Executable:** `filip-dhcp.exe`  
-**Executable SHA256:** `6f6b002f41ba21e8e597fca3d6b7ba0815c2e9fefedc4504476372abbc78f7f9`  
+**Executable SHA256:** `dcb4213aa3bb41f05554771600ad4acefd4bdb0f03daa38821d5994025967bc3`  
 **Release date:** 2026-06-24  
 **License:** MIT License  
 **Runtime:** Windows command-line application, no Npcap required in current lightweight mode
@@ -248,7 +248,7 @@ After building, calculate the SHA256 of the release executable and update this R
 This release also includes:
 
 ```text
-Filip.DHCP-0.2.0-x64.msi
+Filip.DHCP-0.3.0-x64.msi
 ```
 
 The MSI installs:
@@ -275,6 +275,61 @@ CN=SAPIENTECH Local Code Signing
 Thumbprint: D4CAA00550339EDFBDF791D76BD76D3A94A75AE7
 ```
 
+
+
+---
+
+## Optional scheduled monitoring task from MSI
+
+The MSI can optionally create a Windows Scheduled Task for regular DHCP monitoring. This is intended for domain/SIEM deployments where the tool should run periodically and write results to Windows Event Log and optionally to syslog.
+
+The task name is:
+
+```text
+SAPIENTECH\Filip.DHCP Monitor
+```
+
+It runs as:
+
+```text
+NT AUTHORITY\SYSTEM
+```
+
+Default behavior when enabled:
+
+```cmd
+"C:\Program Files\Filip.DHCP\filip-dhcp.exe" /yes /timeout:5 /eventlog
+```
+
+Enable scheduled monitoring during silent install:
+
+```cmd
+msiexec /i Filip.DHCP-0.3.0-x64.msi /qn /norestart INSTALL_SCHEDULED_TASK=1
+```
+
+Enable scheduled monitoring with syslog output:
+
+```cmd
+msiexec /i Filip.DHCP-0.3.0-x64.msi /qn /norestart INSTALL_SCHEDULED_TASK=1 DHCP_SYSLOG=192.168.0.10:514
+```
+
+Use a specific adapter and custom interval:
+
+```cmd
+msiexec /i Filip.DHCP-0.3.0-x64.msi /qn /norestart INSTALL_SCHEDULED_TASK=1 DHCP_ADAPTER=Ethernet DHCP_INTERVAL_MINUTES=15 DHCP_SYSLOG=192.168.0.10:514
+```
+
+Supported MSI properties:
+
+| Property | Default | Description |
+|---|---:|---|
+| `INSTALL_SCHEDULED_TASK` | `0` | Set to `1` to create the scheduled monitoring task. |
+| `DHCP_INTERVAL_MINUTES` | `60` | Task repetition interval in minutes. |
+| `DHCP_TIMEOUT` | `5` | Filip.DHCP timeout in seconds. |
+| `DHCP_ADAPTER` | empty | Optional adapter name. If empty, Filip.DHCP selects the current adapter. |
+| `DHCP_SYSLOG` | empty | Optional syslog target in `host` or `host:port` format. |
+
+The scheduled task is removed automatically when the MSI is uninstalled.
 
 ---
 

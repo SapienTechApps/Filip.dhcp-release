@@ -1,8 +1,8 @@
 # Filip.DHCP Installation Guide
 
 **Application:** Filip.DHCP  
-**Version:** 0.2.0  
-**Installer:** `Filip.DHCP-0.2.0-x64.msi`  
+**Version:** 0.3.0  
+**Installer:** `Filip.DHCP-0.3.0-x64.msi`  
 **Target OS:** Windows 10/11 x64, Windows Server x64  
 **Publisher certificate:** `CN=SAPIENTECH Local Code Signing`  
 **Certificate thumbprint:** `D4CAA00550339EDFBDF791D76BD76D3A94A75AE7`  
@@ -30,7 +30,7 @@ The current lightweight version does **not** require Npcap, Nmap, or a packet ca
 For normal users and domain deployment use only this file:
 
 ```text
-Filip.DHCP-0.2.0-x64.msi
+Filip.DHCP-0.3.0-x64.msi
 ```
 
 The MSI is a self-contained Windows Installer package. It already contains all required payload files.
@@ -118,13 +118,13 @@ For public distribution to unknown third-party users, a paid public code-signing
 Double-click:
 
 ```text
-Filip.DHCP-0.2.0-x64.msi
+Filip.DHCP-0.3.0-x64.msi
 ```
 
 or run from Command Prompt:
 
 ```cmd
-msiexec /i Filip.DHCP-0.2.0-x64.msi
+msiexec /i Filip.DHCP-0.3.0-x64.msi
 ```
 
 Because the installer writes to `Program Files` and imports a machine-level certificate, administrator rights/UAC approval are required.
@@ -136,19 +136,19 @@ Because the installer writes to `Program Files` and imports a machine-level cert
 For silent local installation from an elevated Command Prompt:
 
 ```cmd
-msiexec /i Filip.DHCP-0.2.0-x64.msi /qn /norestart
+msiexec /i Filip.DHCP-0.3.0-x64.msi /qn /norestart
 ```
 
 Silent installation with detailed log:
 
 ```cmd
-msiexec /i Filip.DHCP-0.2.0-x64.msi /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
+msiexec /i Filip.DHCP-0.3.0-x64.msi /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
 ```
 
 Recommended for troubleshooting:
 
 ```cmd
-msiexec /i Filip.DHCP-0.2.0-x64.msi /passive /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
+msiexec /i Filip.DHCP-0.3.0-x64.msi /passive /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
 ```
 
 `/passive` shows progress but does not require user interaction.
@@ -160,13 +160,13 @@ msiexec /i Filip.DHCP-0.2.0-x64.msi /passive /norestart /L*v C:\Windows\Temp\Fil
 Uninstall using the MSI file:
 
 ```cmd
-msiexec /x Filip.DHCP-0.2.0-x64.msi /qn /norestart
+msiexec /x Filip.DHCP-0.3.0-x64.msi /qn /norestart
 ```
 
 Uninstall with log:
 
 ```cmd
-msiexec /x Filip.DHCP-0.2.0-x64.msi /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-uninstall.log
+msiexec /x Filip.DHCP-0.3.0-x64.msi /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-uninstall.log
 ```
 
 Note: certificate removal policy should be decided by administrators. In many environments, trusted publisher/root certificates are managed separately by GPO and are not automatically removed with individual application uninstallers.
@@ -191,13 +191,13 @@ Common deployment options:
 Put the MSI on a UNC path accessible by computers:
 
 ```text
-\\server\software\Filip.DHCP\Filip.DHCP-0.2.0-x64.msi
+\\server\software\Filip.DHCP\Filip.DHCP-0.3.0-x64.msi
 ```
 
 Silent install command:
 
 ```cmd
-msiexec /i "\\server\software\Filip.DHCP\Filip.DHCP-0.2.0-x64.msi" /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
+msiexec /i "\\server\software\Filip.DHCP\Filip.DHCP-0.3.0-x64.msi" /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
 ```
 
 ### Group Policy Software Installation
@@ -215,7 +215,7 @@ Computer Configuration
 Use a UNC path, for example:
 
 ```text
-\\server\software\Filip.DHCP\Filip.DHCP-0.2.0-x64.msi
+\\server\software\Filip.DHCP\Filip.DHCP-0.3.0-x64.msi
 ```
 
 Recommended assignment type:
@@ -324,7 +324,7 @@ CN=SAPIENTECH Local Code Signing
 Check MSI signature before installation:
 
 ```powershell
-Get-AuthenticodeSignature ".\Filip.DHCP-0.2.0-x64.msi"
+Get-AuthenticodeSignature ".\Filip.DHCP-0.3.0-x64.msi"
 ```
 
 Expected status:
@@ -419,7 +419,7 @@ Verify certificate stores using the commands in section 12.
 Run with full log:
 
 ```cmd
-msiexec /i Filip.DHCP-0.2.0-x64.msi /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
+msiexec /i Filip.DHCP-0.3.0-x64.msi /qn /norestart /L*v C:\Windows\Temp\Filip.DHCP-install.log
 ```
 
 Then inspect:
@@ -445,7 +445,7 @@ Check:
 Recommended release package for administrators:
 
 ```text
-Filip.DHCP-0.2.0-x64.msi
+Filip.DHCP-0.3.0-x64.msi
 INSTALLATION.md
 ```
 
